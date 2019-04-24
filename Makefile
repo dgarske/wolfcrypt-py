@@ -21,10 +21,10 @@ for line in sys.stdin:
 		print("%-20s %s" % (target, help))
 endef
 export PRINT_HELP_PYSCRIPT
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
+BROWSER := python3 -c "$$BROWSER_PYSCRIPT"
 
 help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
@@ -80,7 +80,7 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
+	python3 setup.py sdist
 	
 	./make/osx/build_wheels.sh
 
@@ -92,4 +92,4 @@ release: ## package and upload a release
 	twine upload dist/*
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	python3 setup.py install
