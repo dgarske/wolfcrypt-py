@@ -31,7 +31,9 @@ dependencies = [
 Homepage = "https://github.com/wolfssl/wolfcrypt-py"
 
 [build-system]
-requires = ["setuptools", "cffi>=1.17"]
+# setuptools >= 77 is required for the PEP 639 `license` expression and
+# `license-files` above; 76 and older reject them.
+requires = ["setuptools>=77", "cffi>=1.17"]
 build-backend = "setuptools.build_meta:__legacy__"
 
 [dependency-groups]
